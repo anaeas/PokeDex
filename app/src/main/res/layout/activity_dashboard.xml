@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".Dashboard">
 
-    <ListView
+    <TextView
         android:id="@+id/totalCadastrados"
-        style="@style/EditText"
+        style="@style/EditText2"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
@@ -20,7 +20,7 @@
 
     <ListView
         android:id="@+id/tiposCadastrados"
-        style="@style/EditText"
+        style="@style/EditText2"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
@@ -32,7 +32,7 @@
 
     <ListView
         android:id="@+id/habilidadesCadastradas"
-        style="@style/EditText"
+        style="@style/EditText2"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"

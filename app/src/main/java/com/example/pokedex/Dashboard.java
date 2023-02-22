@@ -1,5 +1,7 @@
 package com.example.pokedex;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,12 +12,107 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Dashboard extends AppCompatActivity {
+    private RequestQueue mRequestQueue;
+    private StringRequest mStringRequest;
+    private TextView quantPok;
+    private ListView listaTipo,listaHab;
+    private String url_quant = "http://192.168.15.5/pokedexApi/public/api/quantpokemons";
+    private String url_tipo = "http://192.168.15.5/pokedexApi/public/api/top3tipos";
+    private String url_hab = "http://192.168.15.5/pokedexApi/public/api/top3habilidades";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        quantPok = findViewById(R.id.totalCadastrados);
+        listaTipo = findViewById(R.id.tiposCadastrados);
+        listaHab = findViewById(R.id.habilidadesCadastradas);
+
+        getDataTipo();
+        getDataHab();
+    }
+
+    private void getDataTipo() {
+        mRequestQueue = Volley.newRequestQueue(this);
+        mStringRequest = new StringRequest(Request.Method.GET, url_tipo, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), "Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
+                try {
+                    JSONObject data = new JSONObject(response);
+                    JSONArray subjects = data.getJSONArray("tipos");
+                    String[] subjectsArray = new String[subjects.length()];
+                    for(int i = 0; i < subjects.length(); i++){
+                        subjectsArray[i] = subjects.getString(i);
+                    }
+                    ArrayAdapter<String> array = new ArrayAdapter<String>(
+                            getApplicationContext(),
+                            android.R.layout.simple_list_item_1,
+                            subjectsArray);
+                    listaTipo.setAdapter(array);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i(TAG, "Error :" + error.toString());
+            }
+        });
+        mRequestQueue.add(mStringRequest);
+    }
+
+    private void getDataHab() {
+        mRequestQueue = Volley.newRequestQueue(this);
+        mStringRequest = new StringRequest(Request.Method.GET, url_hab, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), "Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
+                try {
+                    JSONObject data = new JSONObject(response);
+                    JSONArray subjects = data.getJSONArray("habilidades");
+                    String[] subjectsArray = new String[subjects.length()];
+                    for(int i = 0; i < subjects.length(); i++){
+                        subjectsArray[i] = subjects.getString(i);
+                    }
+                    ArrayAdapter<String> array = new ArrayAdapter<String>(
+                            getApplicationContext(),
+                            android.R.layout.simple_list_item_1,
+                            subjectsArray);
+                    listaHab.setAdapter(array);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i(TAG, "Error :" + error.toString());
+            }
+        });
+        mRequestQueue.add(mStringRequest);
     }
 
     @Override
