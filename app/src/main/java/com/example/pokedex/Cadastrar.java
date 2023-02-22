@@ -53,6 +53,7 @@ public class Cadastrar extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        encodedImage = "false";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
 
@@ -216,6 +217,22 @@ public class Cadastrar extends AppCompatActivity {
         public void submit(View view)
         {
             nome = nomeEdt.getText().toString();
+            if (nome.isEmpty()) {
+                Toast.makeText(Cadastrar.this, "Por favor informe o nome do pokemon", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (selectecTipo.equals("Selecione um tipo")) {
+                Toast.makeText(Cadastrar.this, "Por favor selecione um tipo", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (selectedHabilidade1.equals("Selecione uma habilidade") && selectedHabilidade2.equals("Selecione uma habilidade") && selectedHabilidade3.equals("Selecione uma habilidade")) {
+                Toast.makeText(Cadastrar.this, "Por favor selecione pelo menos uma habilidade", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (encodedImage.equals("false")) {
+                Toast.makeText(Cadastrar.this, "Por forneça uma imagem", Toast.LENGTH_SHORT).show();
+                return;
+            }
             cadastrarPokemon();
         }
 
