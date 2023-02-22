@@ -1,5 +1,7 @@
 package com.example.pokedex;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,23 +14,36 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Cadastrar extends AppCompatActivity {
+    private EditText nomeEdt;
     private Spinner tipoSpinner, habilidadeSpinner1, habilidadeSpinner2, habilidadeSpinner3;
     private ArrayAdapter<CharSequence> habilidadeAdapter, tipoAdapter;
-    private String selectecTipo, selectedHabilidade1, selectedHabilidade2, selectedHabilidade3;
+    private String nome,selectecTipo, selectedHabilidade1, selectedHabilidade2, selectedHabilidade3, encodedImage;
 
     int SELECT_FOTO = 1;
     int SELECT_CAM = 2;
@@ -41,7 +56,7 @@ public class Cadastrar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
 
-
+        nomeEdt = findViewById(R.id.editTextNome);
         tipoSpinner = findViewById(R.id.spinnerTipo);
         habilidadeSpinner1 = findViewById(R.id.spinnerHabilidade1);
         habilidadeSpinner2 = findViewById(R.id.spinnerHabilidade2);
@@ -93,7 +108,7 @@ public class Cadastrar extends AppCompatActivity {
             }
         });
 
-        tipoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        habilidadeSpinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedHabilidade3 = habilidadeSpinner3.getSelectedItem().toString();
@@ -148,6 +163,21 @@ public class Cadastrar extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
                 Uri selectedImageUri = data.getData();
+
+                final InputStream imageStream;
+                try {
+                    imageStream = getContentResolver().openInputStream(selectedImageUri);
+                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    selectedImage.compress(Bitmap.CompressFormat.JPEG,50,baos);
+                    byte[] b = baos.toByteArray();
+                    encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
                 if (null != selectedImageUri) {
                     IVPreviewImage.setImageURI(selectedImageUri);
                 } else if (resultCode == RESULT_CANCELED) {
@@ -155,7 +185,8 @@ public class Cadastrar extends AppCompatActivity {
                 }
             }
 
-        } if (requestCode == SELECT_CAM) {
+        }
+        if (requestCode == SELECT_CAM) {
                 if (resultCode == RESULT_OK) {
                     try {
                         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -166,7 +197,7 @@ public class Cadastrar extends AppCompatActivity {
                         boolean validaCompressao = imageBitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStream);
                         byte[] fotoBinario = outputStream.toByteArray();
 
-                        String encodedImage = Base64.encodeToString(fotoBinario, Base64.DEFAULT);
+                        encodedImage = Base64.encodeToString(fotoBinario, Base64.DEFAULT);
 
                         IVPreviewImage.setImageBitmap(imageBitmap); // ImageButton, seto a foto como imagem do botão
 
@@ -180,5 +211,51 @@ public class Cadastrar extends AppCompatActivity {
                     Toast.makeText(this, "Nenhuma foto tirada 1", Toast.LENGTH_SHORT);
                 }
             }
+        }
+
+        public void submit(View view)
+        {
+            nome = nomeEdt.getText().toString();
+            cadastrarPokemon();
+        }
+
+        private void cadastrarPokemon() {
+            String url = "http://192.168.15.5/pokedexApi/public/api/registroPokemon";
+
+            RequestQueue queue = Volley.newRequestQueue(Cadastrar.this);
+
+            StringRequest request = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.i(TAG, "response :" +response);
+                    if (Integer.parseInt(response) == 1) {
+                        Toast.makeText(getApplicationContext(), "Pokemon cadastrado!.", Toast.LENGTH_LONG).show();
+                        finish();
+                        startActivity(getIntent());
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Erro: nome duplicado!.", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }, new com.android.volley.Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), "Erro de conexão com a api.", Toast.LENGTH_LONG).show();
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+
+                    params.put("nome", nome);
+                    params.put("tipo", selectecTipo);
+                    params.put("habilidade_1", selectedHabilidade1);
+                    params.put("habilidade_2", selectedHabilidade2);
+                    params.put("habilidade_3", selectedHabilidade3);
+                    params.put("image", encodedImage);
+
+                    return params;
+                }
+            };
+            queue.add(request);
         }
     }
