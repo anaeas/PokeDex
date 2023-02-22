@@ -57,7 +57,7 @@ public class Dashboard extends AppCompatActivity {
         mStringRequest = new StringRequest(Request.Method.GET, url_quant, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
+//                Toast.makeText(getApplicationContext(), "Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
 //                Log.i(TAG, "linha :" + response);
                 quantPok.setText("Pokémons cadastrados: "+response);
             }
