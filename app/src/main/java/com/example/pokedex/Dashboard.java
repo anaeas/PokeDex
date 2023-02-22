@@ -47,8 +47,28 @@ public class Dashboard extends AppCompatActivity {
         listaTipo = findViewById(R.id.tiposCadastrados);
         listaHab = findViewById(R.id.habilidadesCadastradas);
 
+        getDataQuant();
         getDataTipo();
         getDataHab();
+    }
+
+    private void getDataQuant() {
+        mRequestQueue = Volley.newRequestQueue(this);
+        mStringRequest = new StringRequest(Request.Method.GET, url_quant, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), "Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
+//                Log.i(TAG, "linha :" + response);
+                quantPok.setText("Pokémons cadastrados: "+response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i(TAG, "Error :" + error.toString());
+                Toast.makeText(getApplicationContext(), "Erro de conexão com a api.", Toast.LENGTH_LONG).show();
+            }
+        });
+        mRequestQueue.add(mStringRequest);
     }
 
     private void getDataTipo() {
@@ -56,7 +76,7 @@ public class Dashboard extends AppCompatActivity {
         mStringRequest = new StringRequest(Request.Method.GET, url_tipo, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
+//                Toast.makeText(getApplicationContext(), "Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
                 try {
                     JSONObject data = new JSONObject(response);
                     JSONArray subjects = data.getJSONArray("tipos");
@@ -78,6 +98,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i(TAG, "Error :" + error.toString());
+                Toast.makeText(getApplicationContext(), "Erro de conexão com a api.", Toast.LENGTH_LONG).show();
             }
         });
         mRequestQueue.add(mStringRequest);
@@ -88,7 +109,7 @@ public class Dashboard extends AppCompatActivity {
         mStringRequest = new StringRequest(Request.Method.GET, url_hab, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
+//                Toast.makeText(getApplicationContext(), "Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
                 try {
                     JSONObject data = new JSONObject(response);
                     JSONArray subjects = data.getJSONArray("habilidades");
@@ -110,6 +131,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i(TAG, "Error :" + error.toString());
+                Toast.makeText(getApplicationContext(), "Erro de conexão com a api.", Toast.LENGTH_LONG).show();
             }
         });
         mRequestQueue.add(mStringRequest);
