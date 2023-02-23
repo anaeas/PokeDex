@@ -4,6 +4,6 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/pokebola"/>
+            android:src="@drawable/web_pokedex"/>
     </item>
 </layer-list>
