@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         senhaEdt = findViewById(R.id.editSenha);
 
         if (loginEdt.getText().toString().isEmpty() && senhaEdt.getText().toString().isEmpty()) {
-            Toast.makeText(LoginActivity.this, "Por favor informe login e senha", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Informe login e senha", Toast.LENGTH_SHORT).show();
             return;
         }
         login(loginEdt.getText().toString(), senhaEdt.getText().toString());
@@ -57,16 +57,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if (Integer.parseInt(response) == 1) {
-                    Toast.makeText(getApplicationContext(), "Logado!.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Logado!", Toast.LENGTH_LONG).show();
                     efetuarLogin();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Credenciais inválidas!.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Credenciais inválidas!", Toast.LENGTH_LONG).show();
                 }
             }
         }, new com.android.volley.Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Erro de conexão com a api.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Erro de conexão com a api", Toast.LENGTH_LONG).show();
             }
         }) {
             @Override

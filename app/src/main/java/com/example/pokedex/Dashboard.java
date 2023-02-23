@@ -65,7 +65,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i(TAG, "Error :" + error.toString());
-                Toast.makeText(getApplicationContext(), "Erro de conexão com a api.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Erro de conexão com a api", Toast.LENGTH_LONG).show();
             }
         });
         mRequestQueue.add(mStringRequest);
@@ -96,7 +96,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i(TAG, "Error :" + error.toString());
-                Toast.makeText(getApplicationContext(), "Erro de conexão com a api.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Erro de conexão com a api", Toast.LENGTH_LONG).show();
             }
         });
         mRequestQueue.add(mStringRequest);
@@ -127,7 +127,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i(TAG, "Error :" + error.toString());
-                Toast.makeText(getApplicationContext(), "Erro de conexão com a api.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Erro de conexão com a api", Toast.LENGTH_LONG).show();
             }
         });
         mRequestQueue.add(mStringRequest);

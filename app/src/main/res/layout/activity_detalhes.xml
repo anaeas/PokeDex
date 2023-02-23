@@ -12,7 +12,6 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/pokebola"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +25,6 @@
         app:layout_constraintTop_toBottomOf="@id/logo"
         android:layout_marginTop="10dp"
         android:padding="6dp"
-        android:text="Nome"
         android:textColor="#555555"
         android:textSize="15sp"/>
 
@@ -39,7 +37,6 @@
         app:layout_constraintTop_toBottomOf="@id/textViewNome"
         android:layout_marginTop="10dp"
         android:padding="6dp"
-        android:text="Tipo"
         android:textColor="#555555"
         android:textSize="15sp"/>
 
@@ -52,7 +49,6 @@
         app:layout_constraintTop_toBottomOf="@id/textViewTipo"
         android:layout_marginTop="10dp"
         android:padding="6dp"
-        android:text="categoria"
         android:textColor="#555555"
         android:textSize="15sp"/>
 

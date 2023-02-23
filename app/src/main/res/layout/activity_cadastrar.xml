@@ -88,16 +88,15 @@
         android:background="#ffffff"
         android:gravity="center_horizontal">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/imageViewCam"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
-            android:layout_margin="10dp"
             android:onClick="abrirCamera"
-            android:text="camera"
-            android:src="@drawable/ic_image"
-            tools:textSize="15dp"/>
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/cam1" />
 
 
     </RelativeLayout>

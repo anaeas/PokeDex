@@ -208,8 +208,6 @@ public class Cadastrar extends AppCompatActivity {
                     }
                 } else if (resultCode == RESULT_CANCELED) {
                     Toast.makeText(this, "Nenhuma foto tirada 1", Toast.LENGTH_SHORT);
-                } else {
-                    Toast.makeText(this, "Nenhuma foto tirada 1", Toast.LENGTH_SHORT);
                 }
             }
         }
@@ -218,19 +216,19 @@ public class Cadastrar extends AppCompatActivity {
         {
             nome = nomeEdt.getText().toString();
             if (nome.isEmpty()) {
-                Toast.makeText(Cadastrar.this, "Por favor informe o nome do pokemon", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Cadastrar.this, "Informe o nome do pokemon", Toast.LENGTH_SHORT).show();
                 return;
             }
             if (selectecTipo.equals("Selecione um tipo")) {
-                Toast.makeText(Cadastrar.this, "Por favor selecione um tipo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Cadastrar.this, "Selecione um tipo", Toast.LENGTH_SHORT).show();
                 return;
             }
             if (selectedHabilidade1.equals("Selecione uma habilidade") && selectedHabilidade2.equals("Selecione uma habilidade") && selectedHabilidade3.equals("Selecione uma habilidade")) {
-                Toast.makeText(Cadastrar.this, "Por favor selecione pelo menos uma habilidade", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Cadastrar.this, "Selecione pelo menos uma habilidade", Toast.LENGTH_SHORT).show();
                 return;
             }
             if (encodedImage.equals("false")) {
-                Toast.makeText(Cadastrar.this, "Por forneça uma imagem", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Cadastrar.this, "Selecione uma imagem", Toast.LENGTH_SHORT).show();
                 return;
             }
             cadastrarPokemon();
@@ -246,17 +244,17 @@ public class Cadastrar extends AppCompatActivity {
                 public void onResponse(String response) {
                     Log.i(TAG, "response :" +response);
                     if (Integer.parseInt(response) == 1) {
-                        Toast.makeText(getApplicationContext(), "Pokemon cadastrado!.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Pokemon cadastrado!", Toast.LENGTH_LONG).show();
                         finish();
                         startActivity(getIntent());
                     } else {
-                        Toast.makeText(getApplicationContext(), "Erro: nome duplicado!.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Erro: nome duplicado!", Toast.LENGTH_LONG).show();
                     }
                 }
             }, new com.android.volley.Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getApplicationContext(), "Erro de conexão com a api.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Erro de conexão com a api", Toast.LENGTH_LONG).show();
                 }
             }) {
                 @Override
