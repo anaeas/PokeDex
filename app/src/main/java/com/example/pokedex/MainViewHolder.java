@@ -1,5 +1,6 @@
 package com.example.pokedex;
 
+import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,7 +21,7 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
         textView.setText(text);
     }
 
-    public void setImage(int image) {
-        imageView.setImageResource(image);
+    public void setImage(Bitmap image) {
+        imageView.setImageBitmap(image);
     }
 }
