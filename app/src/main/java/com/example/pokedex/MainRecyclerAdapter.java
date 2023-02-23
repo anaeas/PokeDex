@@ -19,12 +19,14 @@ import java.util.List;
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainViewHolder>{
     List<String> dados;
     List<String> imagens;
+    List<String> ids;
     private Context context;
 
 
-    public MainRecyclerAdapter(List<String> dados, List<String> imagens, Context context) {
+    public MainRecyclerAdapter(List<String> dados, List<String> imagens, List<String> ids, Context context) {
         this.dados = dados;
         this.imagens = imagens;
+        this.ids = ids;
         this.context = context;
     }
 
@@ -36,12 +38,13 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull final MainViewHolder holder, int position) {
-
         holder.setText(dados.get(position));
 
         byte[] decodedString = Base64.decode(imagens.get(position), Base64.DEFAULT);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         holder.setImage(decodedByte);
+
+        holder.setId(Integer.parseInt(ids.get(position)));
     }
 
     @Override

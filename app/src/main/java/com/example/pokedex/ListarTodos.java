@@ -47,19 +47,6 @@ public class ListarTodos extends AppCompatActivity {
 
         getData( this);
 
-
-
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                Toast.makeText(getApplicationContext(),"Nome"+nomePokemon[position-1],Toast.LENGTH_SHORT).show();
-//
-////                Intent it = new Intent(ListarTodos.this, Detalhes.class);
-////                startActivity(it);
-//
-//            }
-//        });
-
     }
 
     private void getData(Context context) {
@@ -84,8 +71,17 @@ public class ListarTodos extends AppCompatActivity {
                     }
                     List<String> imagens = Arrays.asList(imagensArray);
 
+                    JSONArray idsJson = data.getJSONArray("ids");
+                    String[] idsArray = new String[idsJson.length()];
+                    for(int i = 0; i < idsJson.length(); i++){
+                        idsArray[i] = idsJson.getString(i);
+                    }
+                    List<String> ids = Arrays.asList(idsArray);
+
+
+
                     RecyclerView rvMain = findViewById(R.id.rvMain);
-                    final MainRecyclerAdapter adapter = new MainRecyclerAdapter(dados,imagens, context);
+                    final MainRecyclerAdapter adapter = new MainRecyclerAdapter(dados,imagens,ids, context);
                     rvMain.setAdapter(adapter);
                     rvMain.setHasFixedSize(true);
                     rvMain.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
