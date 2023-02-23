@@ -72,6 +72,7 @@ public class PesquisarHabilidade extends AppCompatActivity {
             } else {
                 //Caso tudo ok  PENDENTE
                 String tipoString = habilidadeSpinner.getSelectedItem().toString();
+                tipoString = tipoString.replace(" ", "%20");
 //                Toast.makeText(PesquisarHabilidade.this, "Pesquisa ok", Toast.LENGTH_LONG).show();
                 url2 = url+"/?habilidade="+tipoString;
                 getDataHab();
