@@ -29,7 +29,7 @@ public class PesquisarHabilidade extends AppCompatActivity {
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
     ListView lvHabilidade;
-    private String url = "http://192.168.15.5/pokedexApi/public/api/pesquisahabilidade";
+    private String url = "http://192.168.15.8/pokedexApi/public/api/pesquisahabilidade";
     private String url2;
 
     private Spinner habilidadeSpinner;
@@ -94,9 +94,7 @@ public class PesquisarHabilidade extends AppCompatActivity {
                         subjectsArray[i] = subjects.getString(i);
                     }
                     ArrayAdapter<String> array = new ArrayAdapter<String>(
-                            getApplicationContext(),
-                            android.R.layout.simple_list_item_1,
-                            subjectsArray);
+                            getApplicationContext(), R.layout.list_item_gray, subjectsArray);
                     lvHabilidade.setAdapter(array);
 
                 } catch (JSONException e) {

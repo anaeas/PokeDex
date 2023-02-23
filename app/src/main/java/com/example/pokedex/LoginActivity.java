@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(String login, String senha) {
-        String url = "http://192.168.15.5/pokedexApi/public/api/login";
+        String url = "http://192.168.15.8/pokedexApi/public/api/login";
 
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
 

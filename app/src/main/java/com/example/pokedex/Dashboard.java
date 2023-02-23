@@ -34,9 +34,9 @@ public class Dashboard extends AppCompatActivity {
     private StringRequest mStringRequest;
     private TextView quantPok;
     private ListView listaTipo,listaHab;
-    private String url_quant = "http://192.168.15.5/pokedexApi/public/api/quantpokemons";
-    private String url_tipo = "http://192.168.15.5/pokedexApi/public/api/top3tipos";
-    private String url_hab = "http://192.168.15.5/pokedexApi/public/api/top3habilidades";
+    private String url_quant = "http://192.168.15.8/pokedexApi/public/api/quantpokemons";
+    private String url_tipo = "http://192.168.15.8/pokedexApi/public/api/top3tipos";
+    private String url_hab = "http://192.168.15.8/pokedexApi/public/api/top3habilidades";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +85,7 @@ public class Dashboard extends AppCompatActivity {
                         subjectsArray[i] = subjects.getString(i);
                     }
                     ArrayAdapter<String> array = new ArrayAdapter<String>(
-                            getApplicationContext(),
-                            android.R.layout.simple_list_item_1,
-                            subjectsArray);
+                            getApplicationContext(), R.layout.list_item_gray, subjectsArray);
                     listaTipo.setAdapter(array);
 
                 } catch (JSONException e) {
@@ -118,9 +116,7 @@ public class Dashboard extends AppCompatActivity {
                         subjectsArray[i] = subjects.getString(i);
                     }
                     ArrayAdapter<String> array = new ArrayAdapter<String>(
-                            getApplicationContext(),
-                            android.R.layout.simple_list_item_1,
-                            subjectsArray);
+                            getApplicationContext(), R.layout.list_item_gray, subjectsArray);
                     listaHab.setAdapter(array);
 
                 } catch (JSONException e) {

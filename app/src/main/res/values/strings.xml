@@ -3,15 +3,24 @@
 
     <string-array name="tipo_poke">
         <item>Selecione um tipo</item>
-        <item>Normal</item><item>Fire</item>
-        <item>Water</item><item>Grass</item>
-        <item>Flying</item><item>Fighting</item>
-        <item>Poison</item><item>Electric</item>
-        <item>Ground</item><item>Rock</item>
-        <item>Psychic</item><item>Ice</item>
-        <item>Bug</item><item>Ghost</item>
-        <item>Steel</item><item>Dragon</item>
-        <item>Dark</item><item>Fairy</item>
+        <item>Normal</item>
+        <item>Fire</item>
+        <item>Water</item>
+        <item>Grass</item>
+        <item>Flying</item>
+        <item>Fighting</item>
+        <item>Poison</item>
+        <item>Electric</item>
+        <item>Ground</item>
+        <item>Rock</item>
+        <item>Psychic</item>
+        <item>Ice</item>
+        <item>Bug</item>
+        <item>Ghost</item>
+        <item>Steel</item>
+        <item>Dragon</item>
+        <item>Dark</item>
+        <item>Fairy</item>
     </string-array>
 
     <string-array name="array_default_tipo">
@@ -20,44 +29,82 @@
 
     <string-array name="habilidade_poke">
         <item>Selecione uma habilidade</item>
-        <item>Air Lock</item><item>Arena Trap</item>
-        <item>Battle Armor</item><item>Blaze</item>
-        <item>Chlorophyll</item><item>Clear Body</item>
-        <item>Cloud Nine</item><item>Color Change</item>
-        <item>Compound Eyes</item><item>Cute Charm</item>
-        <item>Damp</item><item>Drizzle</item>
-        <item>Drought</item><item>Early Bird</item>
-        <item>Effect Spore</item><item>Flame Body</item>
-        <item>Flash Fire</item><item>Forecast</item>
-        <item>Guts</item><item>Huge Power</item>
-        <item>Hustle</item><item>Hyper Cutter</item>
-        <item>Illuminate</item><item>Immunity</item>
-        <item>Inner Focus</item><item>Insomnia</item>
-        <item>Intimidate</item><item>Keen Eye</item>
-        <item>Levitate</item><item>Lightning Rod</item>
-        <item>Limber</item><item>Liquid Ooze</item>
-        <item>Magma Armor</item><item>Magnet Pull</item>
-        <item>Marvel Scale</item><item>Minus</item>
-        <item>Natural Cure</item><item>Oblivious</item>
-        <item>Overgrow</item><item>Own Tempo</item>
-        <item>Pickup</item><item>Plus</item>
-        <item>Poison Point</item><item>Pressure</item>
-        <item>Pure Power</item><item>Rain Dish</item>
-        <item>Rock Head</item><item>Rough Skin</item>
-        <item>Run Away</item><item>Sand Stream</item>
-        <item>Sand Veil</item><item>Serene Grace</item>
-        <item>Shadow Tag</item><item>Shed Skin</item>
-        <item>Shell Armor</item><item>Shield Dust</item>
-        <item>Soundproof</item><item>Speed Boost</item>
-        <item>Static</item><item>Stench</item>
-        <item>Sticky Hold</item><item>Sturdy</item>
-        <item>Suction Cups</item><item>Swarm</item>
-        <item>Swift Swim</item><item>Synchronize</item>
-        <item>Thick Fat</item><item>Torrent</item>
-        <item>Trace</item><item>Truant</item>
-        <item>Vital Spirit</item><item>Volt Absorb</item>
-        <item>Water Absorb</item><item>Water Veil</item>
-        <item>White Smoke</item><item>Wonder Guard</item>
+        <item>Air Lock</item>
+        <item>Arena Trap</item>
+        <item>Battle Armor</item>
+        <item>Blaze</item>
+        <item>Chlorophyll</item>
+        <item>Clear Body</item>
+        <item>Cloud Nine</item>
+        <item>Color Change</item>
+        <item>Compound Eyes</item>
+        <item>Cute Charm</item>
+        <item>Damp</item>
+        <item>Drizzle</item>
+        <item>Drought</item>
+        <item>Early Bird</item>
+        <item>Effect Spore</item>
+        <item>Flame Body</item>
+        <item>Flash Fire</item>
+        <item>Forecast</item>
+        <item>Guts</item>
+        <item>Huge Power</item>
+        <item>Hustle</item>
+        <item>Hyper Cutter</item>
+        <item>Illuminate</item>
+        <item>Immunity</item>
+        <item>Inner Focus</item>
+        <item>Insomnia</item>
+        <item>Intimidate</item>
+        <item>Keen Eye</item>
+        <item>Levitate</item>
+        <item>Lightning Rod</item>
+        <item>Limber</item>
+        <item>Liquid Ooze</item>
+        <item>Magma Armor</item>
+        <item>Magnet Pull</item>
+        <item>Marvel Scale</item>
+        <item>Minus</item>
+        <item>Natural Cure</item>
+        <item>Oblivious</item>
+        <item>Overgrow</item>
+        <item>Own Tempo</item>
+        <item>Pickup</item>
+        <item>Plus</item>
+        <item>Poison Point</item>
+        <item>Pressure</item>
+        <item>Pure Power</item>
+        <item>Rain Dish</item>
+        <item>Rock Head</item>
+        <item>Rough Skin</item>
+        <item>Run Away</item>
+        <item>Sand Stream</item>
+        <item>Sand Veil</item>
+        <item>Serene Grace</item>
+        <item>Shadow Tag</item>
+        <item>Shed Skin</item>
+        <item>Shell Armor</item>
+        <item>Shield Dust</item>
+        <item>Soundproof</item>
+        <item>Speed Boost</item>
+        <item>Static</item>
+        <item>Stench</item>
+        <item>Sticky Hold</item>
+        <item>Sturdy</item>
+        <item>Suction Cups</item>
+        <item>Swarm</item>
+        <item>Swift Swim</item>
+        <item>Synchronize</item>
+        <item>Thick Fat</item>
+        <item>Torrent</item>
+        <item>Trace</item>
+        <item>Truant</item>
+        <item>Vital Spirit</item>
+        <item>Volt Absorb</item>
+        <item>Water Absorb</item>
+        <item>Water Veil</item>
+        <item>White Smoke</item>
+        <item>Wonder Guard</item>
     </string-array>
 
     <string-array name="array_default_habilidade">

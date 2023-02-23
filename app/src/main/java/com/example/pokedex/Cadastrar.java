@@ -237,7 +237,7 @@ public class Cadastrar extends AppCompatActivity {
         }
 
         private void cadastrarPokemon() {
-            String url = "http://192.168.15.5/pokedexApi/public/api/registroPokemon";
+            String url = "http://192.168.15.8/pokedexApi/public/api/registroPokemon";
 
             RequestQueue queue = Volley.newRequestQueue(Cadastrar.this);
 
